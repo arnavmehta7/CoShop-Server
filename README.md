@@ -10,7 +10,7 @@
 ### Todos:
 []  API for registration of Users - Store their Name, Location (area,state,pincode), Contact Number
 
-[]  API for registration of Shop Owners - Store the Name, Location (area, state, pincode), Contact Number, types of thing sold, Image, Things they sell
+[]  API for registration of Shop Owners - the Name, Location (area, state, pincode), Contact Number, { __Image Not needed__} 
 
 
 
