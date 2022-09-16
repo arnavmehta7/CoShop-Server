@@ -7,6 +7,16 @@
 #### The APIs are made using FastAPI, for it provides a faster and quick way for production.
 <br/>
 
+
+## How to Run? 
+- Install the dependencies in requirements.txt by     
+    ```pip install -r requirements.txt```
+- Then run: ```uvicorn main:app --reload``` 
+- To live test the API, go to the link mentioned in the console, and move to '/docs' e.g., http://127.0.0.1:8000/docs
+
+
+
+
 ### Todos:
 []  API for registration of Users - Store their Name, Location (area,state,pincode), Contact Number
 
