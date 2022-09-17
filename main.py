@@ -8,6 +8,7 @@ app.add_middleware(
 )
 
 users = []
+passwords = []
 
 @app.get('/')
 async def root():
@@ -19,14 +20,14 @@ async def root():
 
 @app.post('/register-user')
 async def registerUser(email: str = Form(), psw: str = Form()):
-                    #    number: str = Form(), address: str = Form(),
-                    #    pincode: str = Form()):
-    '''
-        registerUser function provides a way for storing of people's IDs and passwords.
-    '''
+
+    ''' registerUser function provides a way for storing of people's IDs and passwords.  '''
     print(f'User is {email} password is {psw}')
-    users.append([email,psw])
-    print(users)
+    # users.append([email,psw])
+    users.append(email)
+    passwords.append(psw)
+
+    # print(users)
     
     return {
         'username': email,
@@ -39,10 +40,11 @@ async def registerUser(email: str = Form(), psw: str = Form()):
 @app.post('/login-user')
 async def loginUser(email: str=Form(),psw: str = Form()):
     '''
-    LoginUser provides the way for authentication of the person'''
+    LoginUser provides the way for authentication of the person
+    '''
 
     # print
-    if (email in users[0]) and (psw in users[1]):
+    if (email in users) and (psw in passwords):
         return {
             'message':'confirmed'
         }
