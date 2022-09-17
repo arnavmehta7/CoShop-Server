@@ -36,3 +36,20 @@ async def registerUser(email: str = Form(), psw: str = Form()):
     }
 
 
+@app.post('/login-user')
+async def loginUser(email: str=Form(),psw: str = Form()):
+    '''
+    LoginUser provides the way for authentication of the person'''
+
+    # print
+    if (email in users[0]) and (psw in users[1]):
+        return {
+            'message':'confirmed'
+        }
+    else:
+        return{
+            'message':'blocked'
+        }
+
+
+
