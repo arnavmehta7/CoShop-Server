@@ -8,7 +8,16 @@ app.add_middleware(
 )
 
 users = []
-passwords = []
+passwordsUsers = []
+
+admins = []
+passwordsAdmins = []
+locationsAdmins = []
+contactAdmins = []
+shopNameAdmins = []
+ownerNameAdmins = []
+
+
 
 @app.get('/')
 async def root():
@@ -25,7 +34,7 @@ async def registerUser(email: str = Form(), psw: str = Form()):
     print(f'User is {email} password is {psw}')
     # users.append([email,psw])
     users.append(email)
-    passwords.append(psw)
+    passwordsUsers.append(psw)
 
     # print(users)
     
@@ -36,6 +45,36 @@ async def registerUser(email: str = Form(), psw: str = Form()):
 
     }
 
+@app.post('/register-admin')
+async def registerAdmin(email: str = Form(), psw: str = Form(),location: str = Form(),
+                        shop_name: str = Form(),
+                        owner_name: str=Form(),contact: str = Form(),
+                                ):
+
+    ''' registerAdmin function provides a way for storing of ADMINS's IDs and passwords.  '''
+    print(f'Details: {email} {psw} {shop_name} {owner_name} {contact} {location}')
+    # users.append([email,psw])
+    admins.append(email)
+    passwordsAdmins.append(psw)
+    locationsAdmins.append(location)
+    contactAdmins.append(contact)
+    shopNameAdmins.append(shop_name)
+    ownerNameAdmins.append(owner_name)
+    # print(users)
+    
+    return {
+        'email': email,
+        'password': psw,
+        'owner': owner_name,
+        'location':location,
+        'shop_name':shop_name,
+        'owner_name':owner_name,
+        'contact':contact
+        # 'pincode': pincode
+
+    }
+
+
 
 @app.post('/login-user')
 async def loginUser(email: str=Form(),psw: str = Form()):
@@ -44,7 +83,7 @@ async def loginUser(email: str=Form(),psw: str = Form()):
     '''
 
     # print
-    if (email in users) and (psw in passwords):
+    if (email in users) and (psw in passwordsUsers):
         return {
             'message':'confirmed'
         }
@@ -53,5 +92,21 @@ async def loginUser(email: str=Form(),psw: str = Form()):
             'message':'blocked'
         }
 
+
+@app.post('/login-admin')
+async def loginAdmin(email: str=Form(),psw: str = Form()):
+    '''
+    LoginAdmin provides the way for authentication of the administrating people
+    '''
+
+    # print
+    if (email in admins) and (psw in passwordsAdmins):
+        return {
+            'message':'confirmed'
+        }
+    else:
+        return{
+            'message':'blocked'
+        }
 
 
