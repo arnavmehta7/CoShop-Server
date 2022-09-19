@@ -108,5 +108,6 @@ async def loginAdmin(email: str=Form(),psw: str = Form()):
         return{
             'message':'blocked'
         }
+    print(email,psw)
 
 
